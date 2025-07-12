@@ -81,9 +81,9 @@
     <p>I’ve never needed attention to make moves.  
     If you understand that, you understand me.</p>
 
-    <div class="links">
-      <a href="https://instagram.com/ttriplesevenn" target="_blank">Instagram</a>
-      <a href="mailto:your@email.com">Email Me</a>
+    <div class="contact">
+      <a href="631-377-9364" target="_blank">Number</a>
+      <a href="dannypalaguachi@icloud.com">Email Me</a>
     </div>
 
     <footer>
