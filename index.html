@@ -5,45 +5,109 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>777</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=VT323&display=swap');
+
     body {
       margin: 0;
       padding: 0;
       background-color: #0e0e0e;
       color: #ffffff;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'VT323', monospace;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background glitch noise */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+ICA8ZmlsdGVyIGlkPSJub2lzZSI+ICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjY1IiBzdGl0Y2hUaWxlcz0iMSIgc2VlZD0iNTAiLz4gIDwvZmlsdGVyPiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==');
+      opacity: 0.1;
+      animation: noise 0.5s steps(8) infinite;
+    }
+
+    @keyframes noise {
+      0% { transform: translate(0, 0); }
+      10% { transform: translate(-5px, -5px); }
+      20% { transform: translate(5px, 5px); }
+      30% { transform: translate(-10px, 10px); }
+      40% { transform: translate(10px, -10px); }
+      50% { transform: translate(-15px, 15px); }
+      60% { transform: translate(15px, -15px); }
+      70% { transform: translate(-10px, 10px); }
+      80% { transform: translate(10px, -10px); }
+      90% { transform: translate(-5px, 5px); }
+      100% { transform: translate(0, 0); }
     }
 
     .container {
       max-width: 700px;
       padding: 40px 20px;
+      z-index: 1;
+      position: relative;
     }
 
     h1 {
-      font-size: 22px;
-      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
       margin-bottom: 25px;
-      letter-spacing: 1.5px;
-      color: #bbbbbb;
+      letter-spacing: 4px;
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+      animation: glitch 1s infinite alternate;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+      25% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+      50% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
+      75% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+      100% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
     }
 
     p {
-      font-size: 17px;
+      font-size: 24px;
       line-height: 1.7;
       margin-bottom: 20px;
-      color: #c9c9c9;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff;
+      opacity: 0;
+      animation: fadeIn 2s ease-in forwards;
+      animation-delay: calc(0.5s * var(--order));
+    }
+
+    p:nth-child(2) { --order: 1; }
+    p:nth-child(3) { --order: 2; }
+    p:nth-child(4) { --order: 3; }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .project {
       margin-top: 35px;
-      font-size: 16px;
-      color: #ffffffcc;
+      font-size: 20px;
+      color: #ffff00;
       font-style: italic;
+      text-shadow: 0 0 5px #ffff00;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .contact {
@@ -54,12 +118,47 @@
 
     footer {
       margin-top: 50px;
-      font-size: 12px;
-      color: #555;
+      font-size: 14px;
+      color: #ff00ff;
+      text-shadow: 0 0 5px #ff00ff;
+      animation: eyesBlink 3s infinite;
+    }
+
+    @keyframes eyesBlink {
+      0%, 90% { opacity: 1; }
+      91%, 100% { opacity: 0; }
+    }
+
+    /* Particle background */
+    #particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Matrix rain effect */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+    }
+
+    /* Hover effects */
+    p:hover, .project:hover {
+      color: #ff00ff;
+      text-shadow: 0 0 10px #ff00ff;
+      transition: all 0.3s ease;
     }
   </style>
 </head>
 <body>
+  <canvas id="matrix"></canvas>
   <div class="container">
     <h1>-777-</h1>
 
@@ -74,11 +173,53 @@
       lil project dropping soon 4fun!
     </div>
 
-    
-
     <footer>
-      &copy; 2025 dannyp.info — 𓁹𓁹𓁹 🇪🇨
+      © 2025 dannyp.info — 𓁹𓁹𓁹 🇪🇨
     </footer>
   </div>
+
+  <script>
+    // Matrix rain effect
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%+-/~{[|`]}𓁹';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(14, 14, 14, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00ff00';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 50);
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
 </body>
 </html>
